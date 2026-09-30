@@ -1,0 +1,28 @@
+from collections import deque
+def solve(start, goal):
+    q = deque([(start, [start])])
+    visited = {start}
+    while q:
+        state, path = q.popleft()
+        if state == goal:
+            return path
+        z = state.index(0)
+        r, c = divmod(z, 3)
+        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < 3 and 0 <= nc < 3:
+                nz = nr * 3 + nc
+                s = list(state)
+                s[z], s[nz] = s[nz], s[z]
+                s = tuple(s)
+                if s not in visited:
+                    visited.add(s)
+                    q.append((s, path + [s]))
+start = tuple(map(int, input("Enter initial state: ").split()))
+goal = (1,2,3,4,5,6,7,8,0)
+path = solve(start, goal)
+for p in path:
+    print(p[:3])
+    print(p[3:6])
+    print(p[6:])
+    print()
