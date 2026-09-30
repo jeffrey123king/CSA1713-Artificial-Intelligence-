@@ -1,0 +1,24 @@
+from collections import deque
+A = int(input("Enter capacity of Jug A: "))
+B = int(input("Enter capacity of Jug B: "))
+target = int(input("Enter target amount: "))
+q = deque([((0, 0), [])])
+visited = {(0, 0)}
+while q:
+    (x, y), path = q.popleft()
+    if x == target or y == target:
+        print("\nSolution:")
+        for s in path + [(x, y)]:
+            print(s)
+        break
+    states = [
+        (A, y), (x, B), (0, y), (x, 0),
+        (x - min(x, B-y), y + min(x, B-y)),
+        (x + min(y, A-x), y - min(y, A-x))
+    ]
+    for s in states:
+        if s not in visited:
+            visited.add(s)
+            q.append((s, path + [(x, y)]))
+else:
+    print("No solution")
