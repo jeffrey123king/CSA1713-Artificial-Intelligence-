@@ -1,16 +1,18 @@
-def solve(board, row):
-    if row == 8:
+def solve(b, r, n):
+    if r == n:
         return True
-    for col in range(8):
-        if all(board[i] != col and
-               abs(board[i] - col) != row - i
-               for i in range(row)):
-            board[row] = col
-            if solve(board, row + 1):
+    for c in range(n):
+        if all(b[i] != c and abs(b[i]-c) != r-i for i in range(r)):
+            b[r] = c
+            if solve(b, r+1, n):
                 return True
     return False
-board = [-1] * 8
-solve(board, 0)
-for i in range(8):
-    print(" ".join("Q" if board[i] == j else "."
-                   for j in range(8)))
+
+n = int(input("Enter N: "))
+b = [-1] * n
+
+if solve(b, 0, n):
+    for r in range(n):
+        print(" ".join("Q" if b[r] == c else "." for c in range(n)))
+else:
+    print("No solution")
