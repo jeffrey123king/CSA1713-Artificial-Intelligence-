@@ -1,0 +1,17 @@
+from itertools import permutations
+w1 = input("Enter first word: ").upper()
+w2 = input("Enter second word: ").upper()
+w3 = input("Enter result word: ").upper()
+letters = set(w1 + w2 + w3)
+def value(word, d):
+    return int("".join(str(d[c]) for c in word))
+for p in permutations(range(10), len(letters)):
+    d = dict(zip(letters, p))
+    if d[w1[0]] == 0 or d[w2[0]] == 0 or d[w3[0]] == 0:
+        continue
+    if value(w1, d) + value(w2, d) == value(w3, d):
+        print("\nSolution:", d)
+        print(value(w1, d), "+", value(w2, d), "=", value(w3, d))
+        break
+else:
+    print("No solution")
