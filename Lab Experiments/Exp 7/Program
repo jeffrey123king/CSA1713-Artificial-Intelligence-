@@ -1,0 +1,24 @@
+from collections import deque
+
+g = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+start = input("Enter starting vertex: ").upper()
+
+q = deque([start])
+visited = {start}
+
+while q:
+    v = q.popleft()
+    print(v, end=" ")
+
+    for n in g.get(v, []):
+        if n not in visited:
+            visited.add(n)
+            q.append(n)
