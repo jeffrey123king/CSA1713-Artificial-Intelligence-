@@ -1,0 +1,21 @@
+g = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+visited = set()
+
+def dfs(v):
+    if v not in visited:
+        print(v, end=" ")
+        visited.add(v)
+
+        for n in g.get(v, []):
+            dfs(n)
+
+start = input("Enter starting vertex: ").upper()
+dfs(start)
