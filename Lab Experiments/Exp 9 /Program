@@ -1,0 +1,23 @@
+from itertools import permutations
+
+n = int(input("Enter number of cities: "))
+d = []
+
+print("Enter distance matrix:")
+for i in range(n):
+    d.append(list(map(int, input().split())))
+
+best = float('inf')
+route = None
+
+for p in permutations(range(1, n)):
+    path = (0,) + p + (0,)
+    cost = sum(d[path[i]][path[i+1]]
+               for i in range(n))
+
+    if cost < best:
+        best = cost
+        route = path
+
+print("Shortest route:", [x+1 for x in route])
+print("Minimum distance:", best)
