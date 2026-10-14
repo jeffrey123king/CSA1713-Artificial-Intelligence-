@@ -1,0 +1,31 @@
+import heapq
+g = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'D': 2, 'E': 5},
+    'C': {'E': 1},
+    'D': {'G': 5},
+    'E': {'G': 3},
+    'G': {}
+}
+h = {'A': 7, 'B': 6, 'C': 4, 'D': 4, 'E': 2, 'G': 0}
+start = input("Enter start node: ").upper()
+goal = input("Enter goal node: ").upper()
+q = [(h[start], 0, start, [start])]
+best = {start: 0}
+while q:
+    f, cost, node, path = heapq.heappop(q)
+    if node == goal:
+        print("Path:", path)
+        print("Cost:", cost)
+        break
+    if cost != best[node]:
+        continue
+    for nxt, w in g[node].items():
+        new = cost + w
+        if new < best.get(nxt, float('inf')):
+            best[nxt] = new
+            heapq.heappush(
+                q, (new + h[nxt], new, nxt, path + [nxt])
+            )
+else:
+    print("No path found")
