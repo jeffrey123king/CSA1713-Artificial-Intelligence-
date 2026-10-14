@@ -1,0 +1,24 @@
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'C', 'D'],
+    'C': ['A', 'B', 'D'],
+    'D': ['B', 'C']
+}
+colors = ['Red', 'Green', 'Blue']
+result = {}
+def solve():
+    if len(result) == len(graph):
+        return True
+    node = next(v for v in graph if v not in result)
+    for color in colors:
+        if all(result.get(n) != color for n in graph[node]):
+            result[node] = color
+            if solve():
+                return True
+            del result[node]
+    return False
+if solve():
+    for node, color in result.items():
+        print(node, ":", color)
+else:
+    print("No solution")
