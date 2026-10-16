@@ -1,1 +1,11 @@
+def minimax(tree, depth, maximizing):
+    if isinstance(tree, int):
+        return tree
 
+    values = [minimax(x, depth + 1, not maximizing)
+              for x in tree]
+
+    return max(values) if maximizing else min(values)
+
+tree = [[3, 5], [2, 9]]
+print("Optimal value:", minimax(tree, 0, True))
