@@ -1,0 +1,6 @@
+student('John', 'Mr_Ravi', 'AI101').
+student('Mary', 'Mr_Kumar', 'DBMS102').
+student('Sam', 'Mrs_Anu', 'ML103').
+
+details(Student, Teacher, Subject) :-
+    student(Student, Teacher, Subject).
