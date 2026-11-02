@@ -1,0 +1,7 @@
+human(john).
+human(mary).
+
+mortal(X) :-
+    human(X).
+
+?- mortal(john).
