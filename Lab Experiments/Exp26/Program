@@ -1,0 +1,10 @@
+move(monkey, door, window).
+move(box, middle, window).
+banana(middle).
+
+solve :-
+    write('Monkey moves to window'), nl,
+    write('Monkey pushes box to middle'), nl,
+    write('Monkey climbs on box'), nl,
+    write('Monkey grasps banana'), nl,
+    write('Banana obtained!'), nl.
