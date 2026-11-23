@@ -1,0 +1,14 @@
+diet(diabetes, vegetables).
+diet(diabetes, whole_grains).
+diet(diabetes, balanced_meals).
+
+diet(hypertension, fruits).
+diet(hypertension, low_salt_food).
+diet(hypertension, vegetables).
+
+diet(anemia, iron_rich_food).
+diet(anemia, leafy_vegetables).
+diet(anemia, vitamin_c_food).
+
+suggest(X, Food) :-
+    diet(X, Food).
