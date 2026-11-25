@@ -1,0 +1,15 @@
+symptom(engine_not_starting).
+symptom(battery_low).
+symptom(no_fuel).
+symptom(flat_tyre).
+
+fault(dead_battery) :-
+    symptom(engine_not_starting),
+    symptom(battery_low).
+
+fault(fuel_problem) :-
+    symptom(engine_not_starting),
+    symptom(no_fuel).
+
+fault(tyre_puncture) :-
+    symptom(flat_tyre).
