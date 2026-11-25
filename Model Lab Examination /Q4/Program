@@ -1,0 +1,21 @@
+employee(riya).
+
+department(ajay, IT).
+department(rahul, IT).
+department(kumar, HR).
+department(riya, HR).
+
+manager(ajay, rahul).
+manager(kumar, riya).
+
+% Find manager
+find_manager(X, Y) :-
+    manager(Y, X).
+
+% Find department
+find_department(X, D) :-
+    department(X, D).
+
+% Find employees under a manager
+employees_under(M, E) :-
+    manager(M, E).
